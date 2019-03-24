@@ -20,6 +20,13 @@ users.pre('save', function(next) {
         .catch(console.error);
 });
 
+// Jerome - this is function creates a bearer authorization method to verify the token
+users.statics.authenticateToken = function(token) {
+    let parsedToken = jwt.verify(token, process.env.SECRET);
+    let query = {_id:parsedToken.id};
+    return this.findOne(query);
+};
+
 users.statics.createFromOauth = function(email) {
 
     if(! email) { return Promise.reject('Validation Error'); }
@@ -53,7 +60,7 @@ users.methods.comparePassword = function(password) {
 
 users.methods.generateToken = function() {
 
-    let token = {
+    let token = { // Jerome - This is the payload
         id: this._id,
         role: this.role,
     };

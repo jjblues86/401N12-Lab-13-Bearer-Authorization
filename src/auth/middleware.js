@@ -10,6 +10,8 @@ module.exports = (req, res, next) => {
         switch( authType.toLowerCase() ) {
             case 'basic':
                 return _authBasic(authString);
+            case 'bearer':
+                return _authBearer(authString);
             default:
                 return _authError();
         }
@@ -31,7 +33,13 @@ module.exports = (req, res, next) => {
             .catch(next);
     }
 
-    function _authenticate(user) {
+    function _authBearer(str) {
+        return User.authenticateToken(str)
+            .then(user => _authenticate(user))
+            .catch(next);
+    }
+
+    function _authenticate(user) { // Jerome - this function generates new token upon signup/in
         if(user) {
             req.user = user;
             req.token = user.generateToken();
