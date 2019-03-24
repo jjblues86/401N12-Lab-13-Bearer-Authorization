@@ -6,22 +6,21 @@
 
 ### Links and Resources
 * [repo](https://github.com/jjblues86/401N12-Lab-13-Bearer-Authorization)
-* 
+* [![Build Status](https://www.travis-ci.com/jjblues86/401N12-Lab-13-Bearer-Authorization.svg?branch=master)](https://www.travis-ci.com/jjblues86/401N12-Lab-13-Bearer-Authorization)
 * [Heroku]()
 
 
 
 ### Modules
-#### `server.js`
+#### `users-models.js`
 #### `index.js`
-##### Exported Values and Methods
+
 
 ###### 
 
 
 
 ### Setup
-* npm i supertest
 * env.PORT || 3000
 
 
@@ -31,7 +30,22 @@
 #### Tests
 * How do you run tests?
 `npm node index.js`
+
 * What assertions were made?
-`can create one`
+
+`given a good token user is able to "log in" and receive a new token.`
+
+`Tokens can optionally be expire`
+
+`Expired tokens do not allow a user to login`
+
+`Auth Keys can login a user as a token would
+`
+
+`Auth Keys do not expire
+`
 * What assertions need to be / should be made?
+
 `can signin with basic`
+
+`can create one`
