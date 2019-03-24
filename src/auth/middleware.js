@@ -33,6 +33,7 @@ module.exports = (req, res, next) => {
             .catch(next);
     }
 
+    // Jerome - this function handles the bearer header
     function _authBearer(str) {
         return User.authenticateToken(str)
             .then(user => _authenticate(user))
